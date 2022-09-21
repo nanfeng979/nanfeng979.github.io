@@ -24,7 +24,8 @@ function canvasApp() {
 
 function drawScreen() {
     render_background() // 渲染背景
-    render_man() // 渲染人物
-    render_stone() // 渲染石头
-    render_hook(hook_distance) // 渲染钩子
+    render_man(left_right_distance) // 渲染人物
+
+    stone_positon_y = render_stone(up_distance) // 渲染石头
+    hook_position_y = render_hook(left_right_distance, up_down_distance) // 渲染钩子
 }

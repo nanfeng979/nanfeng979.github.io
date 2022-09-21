@@ -11,6 +11,9 @@ function angle(radian) {
 }
 
 // 两个物体之间是否碰撞
-function is_collide(objA, jiaodu) {
-    console.log(objA)
+function is_collide(objA, objB) {
+    if(objB - objA <= 0) {
+        // console.log(hook_y_init)
+        return true
+    }
 }

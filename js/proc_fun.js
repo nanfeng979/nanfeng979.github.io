@@ -5,63 +5,35 @@ function render_background() {
 }
 
 // 渲染人物函数
-function render_man() {
+function render_man(x_distance) {
     let personWidth = 140 // 特指人物图片的宽度
     let personHeight = 220 // 特指人物图片的长度
     context.drawImage(personImg, 0, 0, personWidth, personHeight,
-        (canvasWidth - personWidth) / 2, 0, personWidth, personHeight) // 渲染人物
+        (canvasWidth - personWidth) / 2 + x_distance, 0, personWidth, personHeight) // 渲染人物
 }
 
 // 渲染石头函数
-function render_stone() {
+function render_stone(y_distance) {
     let stoneWidth = 100 // 特指人物图片的宽度
     let stoneHeight = 90 // 特指人物图片的长度
+    let stone_y = 600
+    let stone_shape = [(canvasWidth - stoneWidth) / 2, stone_y + y_distance, stoneWidth, stoneHeight]
     context.drawImage(stoneImg, 0, 860, stoneWidth, stoneHeight,
-        (canvasWidth - stoneWidth) / 2, 600, stoneWidth, stoneHeight) // 渲染石头
+        ...stone_shape) // 渲染石头
+    // context.strokeStyle = "red"
+    // context.strokeRect(...stone_shape)
+    return stone_y
 }
 
 // 渲染钩子函数
-function render_hook(hook_distance) {
-    context.save() // 保存初始状态
-    context.translate(canvasWidth / 2, 180)
-    // context.rotate(angle(Angle_between_man_and_hook))
-    context.rotate(angle(90))
+function render_hook(x_distance, y_distance) {
+    let hook_x = (canvasWidth - gouziImg.width / 6) / 2 + x_distance
+    let hook_y_init = 200
+    let hook_y = hook_y_init + y_distance
+    let hook_shape = [hook_x, hook_y, gouziImg.width / 6, gouziImg.height / 6]
     context.drawImage(gouziImg, 0, 0, gouziImg.width, gouziImg.height,
-        hook_distance, 0, gouziImg.width, gouziImg.height) // 渲染钩子
-    context.restore() // 恢复初始状态
+        ...hook_shape) // 渲染钩子
+    // context.strokeStyle = "red"
+    // context.strokeRect(...hook_shape)
+    return hook_y + gouziImg.height / 6
 }
-
-// 控制钩子角度的函数
-function control_gouzi_angle() {
-    // 钩子角度小于等于0度时
-    if(Angle_between_man_and_hook <= 0 ) {
-        // 设置钩子的运动方向状态为"顺时针", 向着顺时针方向摆动
-        hook_direction = "顺时针"
-    }
-    // 钩子角度大于等于150度时
-    else if(Angle_between_man_and_hook >= 150) {
-        // 设置钩子的运动方向状态为"逆时针", 向着逆时针方向摆动
-        hook_direction = "逆时针"
-    }
-
-    // 判断钩子的运动方向，并持续运动
-    if(hook_direction == "顺时针") {
-        Angle_between_man_and_hook++
-    }
-    else if(hook_direction == "逆时针") {
-        Angle_between_man_and_hook--
-    }
-    else if(hook_direction == "暂停") {
-    }
-}
-
-// // 钩子伸出缩回函数
-// function hook_extend() {
-//     context.save() // 保存初始状态
-//     context.translate(canvasWidth / 2, 180)
-//     context.rotate(angle(Angle_between_man_and_hook))
-//     context.drawImage(gouziImg, 0, 0, gouziImg.width, gouziImg.height,
-//         hook_distance, 0, gouziImg.width, gouziImg.height) // 渲染钩子
-//     hook_distance += hook_extend_speed
-//     context.restore() // 恢复初始状态
-// }

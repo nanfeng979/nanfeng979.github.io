@@ -21,6 +21,11 @@ let Angle_between_man_and_hook = 0 // 钩子与一开始时与人物之间的角
 let hook_direction // 保存钩子的运动方向 [1:顺时针, 2:逆时针方向, 3:暂停]
 let hook_status // "暂停时"保存钩子之前的运动方向 [0:仅用于定义, 1:顺时针, 2:逆时针]
 let hook_distance = 50 // 钩子与初始位置的距离
+let left_right_distance = 0 // 控制人物和钩子的左右距离
+let up_down_distance = 0 // 控制钩子的上下距离
+let hook_is_extend = false // 钩子是否在延伸
 let hook_extend_speed = 2.5 // 钩子延伸的速率
 let hook_extend_loop_timer // 保存钩子延伸时的循环函数的id，用来终止循环用的 [0:仅用于定义]
-let hook_is_extend = false
+
+let hook_position_y = 0 // 钩子当前的y的位置
+let up_distance = 0 // 石头向上移动的距离
