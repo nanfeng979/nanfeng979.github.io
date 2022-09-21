@@ -28,4 +28,5 @@ function drawScreen() {
 
     stone_positon_y = render_stone(up_distance) // 渲染石头
     hook_position_y = render_hook(left_right_distance, up_down_distance) // 渲染钩子
+    //
 }
