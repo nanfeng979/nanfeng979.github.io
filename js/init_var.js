@@ -1,31 +1,63 @@
-// 图片对象
-let backgroundImg = new Image() // 创建一个背景图片对象
-backgroundImg.src = "./images/level-background-0.jpg"
+// 返回一些初始化变量
+function init_var() {
+    canvasWidth = theCanvas.width
+    canvasHeight = theCanvas.height
 
-let gouziImg = new Image() // 创建一个钩子图片对象
-gouziImg.src = "./images/gouzi.png"
+    // 存储所有对象信息
+    all_obj = {}
 
-let personImg = new Image() // 创建一个人物图片对象
-personImg.src = "./images/miner-sheet-1.png"
+    // obj对象初始化
+    all_obj["stone_position"] = []
+    all_obj["stone_obj"] = []
 
-let stoneImg = new Image() // 创建一个石头图片对象
-stoneImg.src = "./images/level-sheet.png"
+    // 资源初始化变量
+    fps = 60 // 帧率
+    stone_obj_max_number = 5 // 石块的最大个数
+
+    // 地图环境全局变量
+    down_obj_min_deep = 350 // 底下最小深度，最大深度是canvasHeight
+
+    
+    // 图片对象
+    backgroundImg = new Image() // 创建一个背景图片对象
+    backgroundImg.src = "./images/level-background-0.jpg"
+
+    hookImg = new Image() // 创建一个钩子图片对象
+    hookImg.src = "./images/gouzi1.png"
+
+    personImg = new Image() // 创建一个人物图片对象
+    personImg.src = "./images/miner-sheet-1.png"
+
+    // stoneImg = new Image() // 创建一个石头图片对象
+    // stoneImg.src = "./images/level-sheet.png"
+
+    stoneImg = new Image() // 创建一个石头图片对象
+    stoneImg.src = "./images/stone.png"
+
+    // 创建多个石头的随机位置
+    for(let i = 0; i < stone_obj_max_number; i++) {
+        all_obj["stone_position"][i] = {x: Math.floor(Math.random() * (canvasWidth - stoneImg.width)),
+                               y: Math.floor(Math.random() * (canvasHeight - down_obj_min_deep - stoneImg.height) + down_obj_min_deep)}
+    }
+
+    // 钩子相关变量
+    hook_distance = 50 // 钩子与初始位置的距离
+    left_right_distance = 0 // 控制人物和钩子的左右距离
+    up_down_distance = 0 // 控制钩子的上下距离
+    hook_is_extending = false // 钩子是否在延伸
+    hook_extend_speed = 2.5 // 钩子延伸的速率
+    // hook_extend_loop_timer = 0 // 保存钩子延伸时的循环函数的id，用来终止循环用的 [0:仅用于定义]
+
+    hook_position_y = 0 // 钩子当前的y的位置
+    up_distance = 0 // 石头向上移动的距离
+    is_render_stone = true
+
+    
 
 
-// 状态
-let fps = 60 // 帧率
-let Angle_between_man_and_hook = 0 // 钩子与一开始时与人物之间的角度
+    
 
+    
+    
+}
 
-// 钩子相关变量
-let hook_direction // 保存钩子的运动方向 [1:顺时针, 2:逆时针方向, 3:暂停]
-let hook_status // "暂停时"保存钩子之前的运动方向 [0:仅用于定义, 1:顺时针, 2:逆时针]
-let hook_distance = 50 // 钩子与初始位置的距离
-let left_right_distance = 0 // 控制人物和钩子的左右距离
-let up_down_distance = 0 // 控制钩子的上下距离
-let hook_is_extend = false // 钩子是否在延伸
-let hook_extend_speed = 2.5 // 钩子延伸的速率
-let hook_extend_loop_timer // 保存钩子延伸时的循环函数的id，用来终止循环用的 [0:仅用于定义]
-
-let hook_position_y = 0 // 钩子当前的y的位置
-let up_distance = 0 // 石头向上移动的距离

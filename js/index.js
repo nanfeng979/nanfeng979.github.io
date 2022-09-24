@@ -6,27 +6,44 @@ window.addEventListener("keydown", keydownFun, false)
 function eventWindowLoaded() {
     theCanvas = document.getElementById("canvas")
     context = theCanvas.getContext("2d")
-    init_var()
-    timer()
+    init_var() // 初始化变量
+    canvasApp() // 绘图相关函数
 }
 
-function timer() {
-    window.setTimeout(timer, 1000 / fps) // 1秒60帧执行
-    canvasApp() // 绘图
-}
+// function timer() {
+//     window.setTimeout(timer, 1000 / fps) // 控制每秒运行频率
+//     canvasApp() // 绘图
+// }
 
 // 绘图相关函数
 function canvasApp() {
-    // control_gouzi_angle() // 控制钩子角度
-    drawScreen()
+    window.setTimeout(canvasApp, 1000 / fps) // 控制每秒运行频率
+    drawScreen() // 渲染图面函数
 }
 
 
 function drawScreen() {
-    render_background() // 渲染背景
+    render_obj_with_background() // 渲染背景
     render_man(left_right_distance) // 渲染人物
 
-    stone_positon_y = render_stone(up_distance) // 渲染石头
-    hook_position_y = render_hook(left_right_distance, up_down_distance) // 渲染钩子
-    //
+    // if(is_render_stone) {
+    //     render_stone(up_distance) // 渲染石头
+    // }
+
+
+    
+    for(let i = 0; i < stone_obj_max_number; i++) {
+        let stone_init_position_x = all_obj["stone_position"][i].x // 对象将要渲染的初始x位置
+        let stone_init_position_y = all_obj["stone_position"][i].y // 对象将要渲染的初始y位置
+        let stone_data = render_stone(stone_init_position_x, stone_init_position_y, 0, 0) // 渲染石头
+        all_obj["stone_obj"][i] = stone_data // 讲obj渲染位置与大小数据放到全局对象中
+    }
+
+    // 渲染钩子
+    hook_init_position_x =  (canvasWidth - hookImg.width) / 2 // 对象将要渲染的初始x位置
+    hook_init_position_y = 200 // 对象将要渲染的初始y位置
+    render_obj_with_hook(hook_init_position_x, hook_init_position_y, left_right_distance, up_down_distance) // 渲染钩子
+    // hook_position_y = render_hook(hook_init_position_x, hook_init_position_y, left_right_distance, up_down_distance) // 渲染钩子
+    // all_obj["hook"] = hook_obj
+    
 }

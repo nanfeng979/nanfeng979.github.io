@@ -3,50 +3,45 @@
 // 监听全局键盘事件
 function keydownFun(e) {
     // 监听空格事件
+    // 如果钩子在延伸中，则无法响应所有的键盘消息
+    if(hook_is_extending) {
+        return
+    }
     if(e.key == " ") {
+        e.preventDefault()
         keydown_by_space(e)
     } else if(e.key == "ArrowLeft") {
         e.preventDefault()
+        if(all_obj.hook.x <= 0) {
+            console.log("已超过边界")
+            return
+        }
         left_right_distance -= 15
     } else if(e.key == "ArrowRight") {
         e.preventDefault()
+        if(all_obj.hook.x >= canvasWidth - hookImg.width) {
+            console.log("已超过边界")
+            return
+        }
         left_right_distance += 15
     } else if(e.key == "ArrowUp") {
         e.preventDefault()
     } else if(e.key == "ArrowDown") {
         e.preventDefault()
     }
-    
 }
 
 
 // 空格监听函数
 function keydown_by_space(e) {
-    e.preventDefault()
-    if(hook_is_extend) {
+    if(hook_is_extending) {
         return
     }
 
-    hook_is_extend = true
-    function hook_extend_loop() {
-        hook_extend_loop_timer = window.requestAnimationFrame(hook_extend_loop, 1000 / fps)
-        up_down_distance += 5
-        if(is_collide(hook_position_y, stone_positon_y)) {
-            cancelAnimationFrame(hook_extend_loop_timer)
-            hook_extend_loop_back()
-        }
-    }
-    hook_extend_loop(hook_distance)
+    hook_is_extending = true // 钩子正在延伸中
+    hook_extend_loop() // 钩子伸出函数
 }
 
-function hook_extend_loop_back() {
-    hook_extend_loop_back_timer = window.requestAnimationFrame(hook_extend_loop_back, 1000 / fps)
-    up_down_distance -= 2
-    up_distance -= 2
-    if(up_down_distance == 0) {
-        cancelAnimationFrame(hook_extend_loop_back_timer)
-    }
-}
 
 
 
