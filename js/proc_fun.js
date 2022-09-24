@@ -27,7 +27,8 @@ function render_stone(init_position_x, init_position_y, distance_x, distance_y) 
     let render_data = [position_x, position_y, stoneImg.width, stoneImg.height] // obj要渲染的位置与大小
     render_obj(stoneImg, self_data, render_data) // 渲染obj
     render_obj_border("red", render_data) // 渲染obj边框
-    return {x:position_x, y:position_y, w:hookImg.width, h:hookImg.height}
+    return {img: stoneImg, x: position_x, y: position_y,
+            w: hookImg.width, h: hookImg.height}
 }
 
 // 渲染钩子函数 // 可以移动/可以自主左右上下移动

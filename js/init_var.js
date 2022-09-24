@@ -7,8 +7,8 @@ function init_var() {
     all_obj = {}
 
     // obj对象初始化
-    all_obj["stone_position"] = []
-    all_obj["stone_obj"] = []
+    all_obj["stone_position"] = {}
+    all_obj["stone_obj"] = {}
 
     // 资源初始化变量
     fps = 60 // 帧率
@@ -36,8 +36,9 @@ function init_var() {
 
     // 创建多个石头的随机位置
     for(let i = 0; i < stone_obj_max_number; i++) {
-        all_obj["stone_position"][i] = {x: Math.floor(Math.random() * (canvasWidth - stoneImg.width)),
-                               y: Math.floor(Math.random() * (canvasHeight - down_obj_min_deep - stoneImg.height) + down_obj_min_deep)}
+        all_obj["stone_position"][i] = {id: Math.floor(Math.random() * 100000000),
+                        x: Math.floor(Math.random() * (canvasWidth - stoneImg.width)),
+                        y: Math.floor(Math.random() * (canvasHeight - down_obj_min_deep - stoneImg.height) + down_obj_min_deep)}
     }
 
     // 钩子相关变量

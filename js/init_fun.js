@@ -5,22 +5,13 @@ function angle(radian) {
 }
 
 // 两个物体之间是否碰撞 // todo: x轴也要考虑
-// todo: 应该改成延伸出去后是否会遇到物品，而不是与xx碰撞
-// param:{objA:; objB:}, return:bool
-// function is_collide(objA, objB) {
-//     if(objB - objA <= 0) {
-//         // console.log(hook_y_init)
-//         return true
-//     }
-// }
 function is_collide(obj) {
     for(let i = 0; i < stone_obj_max_number; i++) {
         //  
         if((obj.x + obj.w) >= all_obj['stone_obj'][i].x && 
             obj.x - obj.w <= all_obj['stone_obj'][i].x + all_obj['stone_obj'][i].w &&
             (obj.y + obj.h) >= all_obj['stone_obj'][i].y) {
-            console.log("yes")
-            return true
+            return all_obj["stone_position"][i]
         }
 
         // console.log((all_obj['stone_obj'][i].x + all_obj['stone_obj'][i].w))
