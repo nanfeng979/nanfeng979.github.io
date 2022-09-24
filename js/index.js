@@ -42,8 +42,8 @@ function drawScreen() {
     // 渲染钩子
     hook_init_position_x =  (canvasWidth - hookImg.width) / 2 // 对象将要渲染的初始x位置
     hook_init_position_y = 200 // 对象将要渲染的初始y位置
-    render_obj_with_hook(hook_init_position_x, hook_init_position_y, left_right_distance, up_down_distance) // 渲染钩子
-    // hook_position_y = render_hook(hook_init_position_x, hook_init_position_y, left_right_distance, up_down_distance) // 渲染钩子
+    render_obj_with_hook(hook_init_position_x, hook_init_position_y, left_right_distance, g_up_down_distance) // 渲染钩子
+    // hook_position_y = render_hook(hook_init_position_x, hook_init_position_y, left_right_distance, g_up_down_distance) // 渲染钩子
     // all_obj["hook"] = hook_obj
     
 }

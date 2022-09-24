@@ -44,7 +44,7 @@ function init_var() {
     // 钩子相关变量
     hook_distance = 50 // 钩子与初始位置的距离
     left_right_distance = 0 // 控制人物和钩子的左右距离
-    up_down_distance = 0 // 控制钩子的上下距离
+    g_up_down_distance = 0 // 控制钩子的上下距离
     hook_is_extending = false // 钩子是否在延伸
     hook_extend_speed = 2.5 // 钩子延伸的速率
     // hook_extend_loop_timer = 0 // 保存钩子延伸时的循环函数的id，用来终止循环用的 [0:仅用于定义]
