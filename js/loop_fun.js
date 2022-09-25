@@ -2,12 +2,15 @@
 function hook_extend_loop() {
     let hook_extend_loop_timer = window.requestAnimationFrame(hook_extend_loop, 1000 / fps)
     g_up_down_distance += 10
+    // 定义最大深度
     max_deep = canvasHeight - hook_init_position_y - hookImg.height
+    // 钩子超过最大深度则自动伸回
     if(g_up_down_distance >= max_deep) {
         cancelAnimationFrame(hook_extend_loop_timer)
         hook_extend_return_loop() // 钩子伸回函数
         return
     }
+    // 如果碰撞，则钩子与石头一起伸回
     let collided_obj
     if(collided_obj = is_collide(all_obj['hook'])) {
         cancelAnimationFrame(hook_extend_loop_timer)
@@ -29,14 +32,6 @@ function hook_extend_return_loop() {
     }
 }
 
-// function stone_return_loop(collided_obj) {
-//     stone_return_loop_timer = window.requestAnimationFrame(stone_return_loop, 1000 / fps)
-//     if(!collided_obj.d) {
-//         collided_obj.d = 5
-//     }
-//     collided_obj.d += 5
-// }
-
 // 石头返回函数
 var stone_return_loop = {
     obj:"",
@@ -49,6 +44,7 @@ var stone_return_loop = {
                     all_obj.stone_position[i].y = -1000
                     all_obj.stone_position[i].w = 0
                     all_obj.stone_position[i].h = 0
+                    bling.play() // 触发音效
                 }
             }
             cancelAnimationFrame(stone_return_loop_timer)

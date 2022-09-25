@@ -17,8 +17,12 @@ function init_var() {
     // 地图环境全局变量
     down_obj_min_deep = 350 // 底下最小深度，最大深度是canvasHeight
 
-    
-    // 图片对象
+    // 音频资源对象
+    // bling = document.getElementById("dianji")
+    bling = new Audio()
+    bling.src = "./media/dianji.mp3"
+
+    // 图片资源对象
     backgroundImg = new Image() // 创建一个背景图片对象
     backgroundImg.src = "./images/level-background-0.jpg"
 
@@ -42,10 +46,9 @@ function init_var() {
     }
 
     // 钩子相关变量
-    hook_distance = 50 // 钩子与初始位置的距离
-    left_right_distance = 0 // 控制人物和钩子的左右距离
+    g_left_right_distance = 0 // 控制人物和钩子的左右距离
     g_up_down_distance = 0 // 控制钩子的上下距离
-    hook_is_extending = false // 钩子是否在延伸
+    g_hook_is_extending = false // 钩子是否在延伸
     hook_extend_speed = 2.5 // 钩子延伸的速率
     // hook_extend_loop_timer = 0 // 保存钩子延伸时的循环函数的id，用来终止循环用的 [0:仅用于定义]
 

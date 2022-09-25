@@ -13,8 +13,6 @@ function is_collide(obj) {
             (obj.y + obj.h) >= all_obj['stone_obj'][i].y) {
             return all_obj["stone_position"][i]
         }
-
-        // console.log((all_obj['stone_obj'][i].x + all_obj['stone_obj'][i].w))
     }
 }
 
@@ -27,10 +25,10 @@ function render_obj(obj, obj_self_data, obj_render_data) {
             width:obj_render_data[2], height:obj_render_data[3]}
 }
 
-
 // 渲染物体的边框
 // param: {color:string; shape:[obj_option_x:number, obj_option_y:number, obj_width:number, obj_height:number]}
 function render_obj_border(color, shape) {
     context.strokeStyle = color
     context.strokeRect(...shape)
 }
+

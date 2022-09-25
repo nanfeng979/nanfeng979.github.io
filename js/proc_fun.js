@@ -40,7 +40,7 @@ function render_stone(init_position_x, init_position_y, distance_x, distance_y) 
 // return: {}
 function render_obj_with_hook(init_position_x, init_position_y, distance_x, distance_y) {
     if(distance_y == 0) { // 钩子延伸距离为0时，钩子可以延伸
-        hook_is_extending = false
+        g_hook_is_extending = false
     }
     let position_x = init_position_x + distance_x // obj的最新x轴位置
     let position_y = init_position_y + distance_y // obj的最新y轴位置
