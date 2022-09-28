@@ -5,10 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style> div { border: 1px solid black; } </style>
+    <!-- <style> #canvas { border: 1px solid black; } </style> -->
+    <style>
+        #game_cover, #game_start_loading {
+            position: absolute;
+            top:8px;
+        }
+    </style>
 </head>
 <body>
     <div style="width:1280px; margin:0 auto;">
+        <img id="game_start_loading" src="./images/game_start_loading.png">
+        <img id="game_cover" src="./images/game_cover.png">
         <canvas id="canvas" width="1280" height="720">
             你的浏览器不支持Canvas
         </canvas>

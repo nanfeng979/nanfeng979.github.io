@@ -24,19 +24,20 @@ function init_var() {
 
     // 图片资源对象
     backgroundImg = new Image() // 创建一个背景图片对象
-    backgroundImg.src = "./images/level-background-0.jpg"
+    // backgroundImg.src = "./images/level-background-0.jpg"
+    backgroundImg.src = "./images/game_background.png"
 
     hookImg = new Image() // 创建一个钩子图片对象
-    hookImg.src = "./images/gouzi1.png"
+    // hookImg.src = "./images/gouzi1.png"
+    hookImg.src = "./images/yugou.png"
 
     personImg = new Image() // 创建一个人物图片对象
-    personImg.src = "./images/miner-sheet-1.png"
-
-    // stoneImg = new Image() // 创建一个石头图片对象
-    // stoneImg.src = "./images/level-sheet.png"
+    // personImg.src = "./images/miner-sheet-1.png"
+    personImg.src = "./images/renwu.png"
 
     stoneImg = new Image() // 创建一个石头图片对象
-    stoneImg.src = "./images/stone.png"
+    // stoneImg.src = "./images/stone.png"
+    stoneImg.src = "./images/diaodengyu.png"
 
     // 创建多个石头的随机位置
     for(let i = 0; i < stone_obj_max_number; i++) {

@@ -7,10 +7,11 @@ function render_obj_with_background() {
 
 // 渲染人物函数 // 可以移动/可以主动左右移动
 function render_man(x_distance) {
-    let personWidth = 140 // 特指人物图片的宽度
-    let personHeight = 220 // 特指人物图片的长度
-    context.drawImage(personImg, 0, 0, personWidth, personHeight,
-        (canvasWidth - personWidth) / 2 + x_distance, 0, personWidth, personHeight) // 渲染人物
+    let render_data = [(canvasWidth - personImg.width) / 2 + x_distance, 0, personImg.width, personImg.height]
+    context.drawImage(personImg, 0, 0, personImg.width, personImg.height,
+        ...render_data) // 渲染人物
+    render_obj_border("red", render_data) // 渲染obj边框
+
 }
 
 // 渲染石头函数 // 可以移动/只能被动上下移动
@@ -24,11 +25,11 @@ function render_stone(init_position_x, init_position_y, distance_x, distance_y) 
     //     return stone_y
     // }
     let self_data = [0, 0, stoneImg.width, stoneImg.height] // obj自己的裁剪位置与大小
-    let render_data = [position_x, position_y, stoneImg.width, stoneImg.height] // obj要渲染的位置与大小
+    let render_data = [position_x, position_y, stoneImg.width / 2, stoneImg.height / 2] // obj要渲染的位置与大小
     render_obj(stoneImg, self_data, render_data) // 渲染obj
     render_obj_border("red", render_data) // 渲染obj边框
     return {img: stoneImg, x: position_x, y: position_y,
-            w: hookImg.width, h: hookImg.height}
+            w: stoneImg.width / 2, h: stoneImg.height / 2}
 }
 
 // 渲染钩子函数 // 可以移动/可以自主左右上下移动
@@ -50,4 +51,15 @@ function render_obj_with_hook(init_position_x, init_position_y, distance_x, dist
     render_obj_border("red", render_data) // 渲染obj边框
     all_obj["hook"] = {x:position_x, y:position_y, w:hookImg.width, h:hookImg.height} // 讲obj渲染位置与大小数据放到全局对象中
     return {x:position_x + distance_x, y:position_y + distance_y, w:hookImg.width, h:hookImg.height}
+}
+
+
+
+// test
+testImg = new Image()
+testImg.src = "../images/test.png"
+function render_test() {
+    let self_data = [0, 0, testImg.width, testImg.height]
+    let render_data = [0, 0, canvasWidth, canvasHeight]
+    render_obj(testImg, self_data, render_data)
 }
